@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Zap, Activity, TrendingDown, FileText, Check, ChevronRight } from 'lucide-react'
 import Card from '../ui/Card'
 
@@ -11,6 +12,7 @@ const services = [
     Icon: Zap,
     color: 'from-blue-500 to-purple-600',
     features: ['Energy optimization', 'Metabolic health', 'Cellular repair'],
+    link: '/services/metabolic-reset'
   },
   {
     id: 'hormone',
@@ -19,6 +21,7 @@ const services = [
     Icon: Activity,
     color: 'from-purple-500 to-pink-600',
     features: ['HRT therapy', 'Bioidentical hormones', 'Regular monitoring'],
+    link: '/services/hormone-optimization'
   },
   {
     id: 'weight',
@@ -27,6 +30,7 @@ const services = [
     Icon: TrendingDown,
     color: 'from-green-500 to-teal-600',
     features: ['GLP-1 medications', 'Nutrition guidance', 'Progress tracking'],
+    link: '/services/weight-transformation'
   },
   {
     id: 'diagnostics',
@@ -35,6 +39,7 @@ const services = [
     Icon: FileText,
     color: 'from-teal-500 to-blue-600',
     features: ['Full panel testing', 'Quarterly reviews', 'Personalized insights'],
+    link: '/services/diagnostics'
   },
 ]
 
@@ -62,10 +67,13 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-              <button className="text-blue-600 font-semibold flex items-center hover:text-blue-700">
+              <Link 
+                href={service.link}
+                className="text-blue-600 font-semibold flex items-center hover:text-blue-700 group"
+              >
                 Learn More
-                <ChevronRight className="w-4 h-4 ml-1" />
-              </button>
+                <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Card>
           ))}
         </div>
