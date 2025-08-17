@@ -1,4 +1,3 @@
-// components/layout/Footer.tsx
 'use client'
 
 import Link from 'next/link'
@@ -10,46 +9,44 @@ export default function Footer() {
   const footerLinks = {
     quickLinks: [
       { href: '/', label: 'Home' },
-      { href: '#services', label: 'Services' },
-      { href: '#pricing', label: 'Pricing' },
-      { href: '/portal', label: 'Patient Portal' },
-      { href: '/lab-testing', label: 'Lab Testing' },
-      { href: '/journal', label: 'Health Journal' },
+      { href: '/#services', label: 'Services' },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/#how-it-works', label: 'How It Works' },
+      { href: '/#testimonials', label: 'Success Stories' },
+      { href: '/#faq', label: 'FAQ' },
+    ],
+    services: [
+      { href: '/services/metabolic-reset', label: 'Metabolic Reset' },
+      { href: '/services/hormone-optimization', label: 'Hormone Optimization' },
+      { href: '/services/weight-transformation', label: 'Weight Transformation' },
+      { href: '/services/diagnostics', label: 'Advanced Diagnostics' },
     ],
     support: [
-      { href: '#faq', label: 'FAQs' },
+      { href: '/#faq', label: 'FAQs' },
+      { href: '/contact', label: 'Contact Us' },
       { href: '/shipping', label: 'Shipping & Returns' },
       { href: '/privacy', label: 'Privacy Policy' },
       { href: '/terms', label: 'Terms of Service' },
       { href: '/hipaa', label: 'HIPAA Notice' },
-      { href: '/contact', label: 'Contact Us' },
-    ],
-    services: [
-      { href: '/metabolic-reset', label: 'Metabolic Reset' },
-      { href: '/hormone-optimization', label: 'Hormone Optimization' },
-      { href: '/weight-loss', label: 'Weight Transformation' },
-      { href: '/diagnostics', label: 'Advanced Diagnostics' },
-      { href: '/peptide-therapy', label: 'Peptide Therapy' },
-      { href: '/consultation', label: 'Book Consultation' },
     ],
   }
 
   const socialLinks = [
-    { Icon: Facebook, href: '#', label: 'Facebook' },
-    { Icon: Twitter, href: '#', label: 'Twitter' },
-    { Icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { Icon: Instagram, href: '#', label: 'Instagram' },
+    { Icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+    { Icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { Icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
   ]
 
   return (
     <footer className="bg-gray-900 text-white">
-      {/* Main Footer Content */}
-      <div className="container py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-4">
-              <h3 className="text-2xl font-heading font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 HealthClinic
               </h3>
             </Link>
@@ -59,11 +56,13 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex space-x-3">
               {socialLinks.map((social) => (
-                <a
+                
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
                 >
                   <social.Icon className="w-5 h-5" />
                 </a>
@@ -151,7 +150,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
-        <div className="container py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
               © {currentYear} HealthClinic. All rights reserved.

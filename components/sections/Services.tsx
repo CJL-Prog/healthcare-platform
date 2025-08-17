@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Zap, Activity, TrendingDown, FileText, Check, ChevronRight } from 'lucide-react'
 import Card from '../ui/Card'
 
@@ -44,6 +44,12 @@ const services = [
 ]
 
 export default function Services() {
+  const router = useRouter()
+  
+  const handleCardClick = (link: string) => {
+    router.push(link)
+  }
+
   return (
     <section id="services" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,28 +59,31 @@ export default function Services() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => (
-            <Card key={service.id} hover gradient={service.color}>
-              <div className={`w-14 h-14 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-4`}>
-                <service.Icon className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
-              <ul className="space-y-2 mb-4">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-sm text-gray-600">
-                    <Check className="w-4 h-4 text-green-500 mr-2" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link 
-                href={service.link}
-                className="text-blue-600 font-semibold flex items-center hover:text-blue-700 group"
-              >
-                Learn More
-                <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Card>
+            <div 
+              key={service.id} 
+              onClick={() => handleCardClick(service.link)}
+              className="cursor-pointer transform transition-all duration-300 hover:scale-105"
+            >
+              <Card hover gradient={service.color} className="h-full">
+                <div className={`w-14 h-14 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-4`}>
+                  <service.Icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <ul className="space-y-2 mb-4">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className="text-blue-600 font-semibold flex items-center hover:text-blue-700">
+                  Learn More
+                  <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Card>
+            </div>
           ))}
         </div>
       </div>
