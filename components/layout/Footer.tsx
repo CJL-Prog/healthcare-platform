@@ -56,7 +56,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex space-x-3">
               {socialLinks.map((social) => (
-                
+                <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
