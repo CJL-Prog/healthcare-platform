@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+// Setup Instructions (README.md)
+# Healthcare Platform - Setup Guide
 
-## Getting Started
+## Quick Start
 
-First, run the development server:
-
+1. **Create Next.js Project**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest healthcare-platform --typescript --tailwind --app
+cd healthcare-platform
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install Dependencies**
+```bash
+npm install framer-motion lucide-react @radix-ui/react-accordion @radix-ui/react-dialog clsx tailwind-merge
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Update tailwind.config.ts**
+Replace the default config with the one provided in the project structure document.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Add Custom Fonts**
+Add to your app/layout.tsx:
+```typescript
+import { Inter, Poppins } from 'next/font/google'
 
-## Learn More
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const poppins = Poppins({ 
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins'
+})
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. **Copy Component Files**
+Copy all component files from the provided structure into their respective directories.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. **Update globals.css**
+Replace the default globals.css with the provided styles.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+7. **Run Development Server**
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+├── app/
+│   ├── layout.tsx      # Root layout with navigation
+│   ├── page.tsx         # Homepage with all sections
+│   └── globals.css      # Global styles and animations
+├── components/
+│   ├── layout/          # Navigation and footer
+│   ├── sections/        # Page sections (Hero, Services, etc.)
+│   ├── ui/              # Reusable UI components
+│   └── intake/          # Assessment flow components
+└── lib/
+    ├── constants.ts     # Site data and configuration
+    └── utils.ts         # Utility functions
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization
+
+### Colors
+Edit the color scheme in `tailwind.config.ts`:
+- Primary: Deep Blue (#1E3A8A)
+- Secondary: Sky Blue (#3B82F6)  
+- Accent: Emerald Green (#10B981)
+
+### Content
+Update content in `lib/constants.ts`:
+- Services
+- Pricing plans
+- Testimonials
+- FAQ items
+- Trust badges
+
+### Animations
+Animations are defined in:
+- `tailwind.config.ts` - Keyframe animations
+- `globals.css` - Custom animations
+- Components - Framer Motion animations
+
+## Deployment
+
+### Vercel (Recommended)
+```bash
+npm run build
+vercel deploy
+```
+
+### Docker
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+## Features
+
+✅ Fully responsive design
+✅ Modern animations and interactions
+✅ Accessibility compliant
+✅ SEO optimized
+✅ TypeScript support
+✅ Tailwind CSS styling
+✅ Component-based architecture
+✅ Performance optimized
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari 14+
+- Edge (latest)
+- Mobile browsers
+
+## Performance Tips
+
+1. Use Next.js Image component for images
+2. Enable static site generation where possible
+3. Implement lazy loading for below-fold content
+4. Use dynamic imports for heavy components
+5. Optimize fonts with next/font
+
+## License
+
+MIT
